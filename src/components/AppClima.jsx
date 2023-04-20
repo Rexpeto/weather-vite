@@ -1,8 +1,10 @@
+import Formulario from "./Formulario";
+
 const AppClima = () => {
     return (
         <>
             <main className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                <div>Formulario</div>
+                <Formulario />
                 <div>Resultado</div>
             </main>
         </>
