@@ -54,7 +54,11 @@ export const ClimaProvider = ({ children }) => {
             );
 
             //? Colocando objecto del clima en el state
-            setRespuesta(clima);
+            setRespuesta({
+                name: ubicacion[0]?.name,
+                state: ubicacion[0]?.state,
+                clima,
+            });
 
             //? Limpiando inputs
             setBusqueda({
