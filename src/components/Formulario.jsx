@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 import useClima from "../hooks/useClima";
 
 const Formulario = () => {
-    const { datosBusqueda, busqueda } = useClima();
+    const { datosBusqueda, busqueda, consultarClima } = useClima();
 
     //* Al enviar el formulario
     const handdlerSubmit = (e) => {
@@ -12,6 +12,8 @@ const Formulario = () => {
             toast.warn("Todos los campos son obligatorios");
             return;
         }
+
+        consultarClima();
     };
 
     return (
