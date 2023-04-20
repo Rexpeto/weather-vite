@@ -1,11 +1,22 @@
+import { toast } from "react-toastify";
 import useClima from "../hooks/useClima";
 
 const Formulario = () => {
     const { datosBusqueda, busqueda } = useClima();
 
+    //* Al enviar el formulario
+    const handdlerSubmit = (e) => {
+        e.preventDefault();
+
+        if (Object.values(busqueda).includes("")) {
+            toast.warn("Todos los campos son obligatorios");
+            return;
+        }
+    };
+
     return (
         <div className="max-w-full p-6 rounded-lg shadow bg-gray-800/90 border-gray-700 backdrop-blur-xl backdrop-brightness-75">
-            <form>
+            <form onSubmit={handdlerSubmit}>
                 <div className="relative z-0 w-full mb-6 group">
                     <input
                         type="text"
@@ -13,7 +24,6 @@ const Formulario = () => {
                         id="ciudad"
                         className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer transition duration-150"
                         placeholder=" "
-                        required
                         onChange={(e) => datosBusqueda(e)}
                         value={busqueda.ciudad}
                     />
