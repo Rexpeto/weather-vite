@@ -13,6 +13,8 @@ export const ClimaProvider = ({ children }) => {
 
     const [respuesta, setRespuesta] = useState({});
 
+    const [cargando, setCargando] = useState(false);
+
     //* Llena el objecto del state
     const datosBusqueda = (e) => {
         setBusqueda({
@@ -23,6 +25,7 @@ export const ClimaProvider = ({ children }) => {
 
     //* Consulta a la api
     const consultarClima = async () => {
+        setCargando(true);
         try {
             const { ciudad, pais } = busqueda;
             const appId = import.meta.env.VITE_API_KEY;
@@ -36,6 +39,7 @@ export const ClimaProvider = ({ children }) => {
                     ciudad: "",
                     pais: "",
                 });
+                setCargando(false);
                 return;
             }
 
@@ -68,6 +72,8 @@ export const ClimaProvider = ({ children }) => {
         } catch (error) {
             toast.error("Ooops! Ocurrio un error");
         }
+
+        setCargando(false);
     };
 
     return (
@@ -77,6 +83,7 @@ export const ClimaProvider = ({ children }) => {
                 busqueda,
                 consultarClima,
                 respuesta,
+                cargando,
             }}
         >
             {children}
